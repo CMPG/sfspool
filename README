@@ -1,3 +1,39 @@
-Code for the article "Demogenomic inference from spatially and temporally heterogeneous samples", Marchi, Kapopoulou, and Excoffier
+Code and Files for the article "Demogenomic inference from spatially and temporally heterogeneous samples", Marchi, Kapopoulou, and Excoffier
 
+##CODES##
 The zipped directories linux.zip and win.zip contain the fastsimcoal linux and windows versions used for the analyses
+
+##SIMULATION##
+Simulated data for models with spatial or temporal heterogeneities and attempts to recover these true scenarios with fastsimcoal
+
+###SIMULATED DATA###
+10 replicated sfs have been simulated under conditions described in Table 1 (named def by fastsimcoal) for 3 models: 
+
+1) "Spatial2pop" = Spatial heterogeneity with 2 populations per continent (Fig 1A) 
+	- Def 1: Strong heterogeneity; No admixture
+	- Def 2: Weak heterogeneity; No admixture
+	- Def 3: No heterogeneity; No admixture
+	- Def 4: Medium heterogeneity; Large admixture
+	- Def 5: Medium heterogeneity; Small admixture
+	- Def 6: Medium heterogeneity; No admixture
+
+2) "10PopDivPool" = Spatial heterogeneity with 5 populations per continent (Fig 1B)
+	- Def 3: no admixture for n=2 
+	- Def 6: no admixture for n=10 
+
+3) "Temporal" = Temporal Heterogeneity
+	- Def 1: 2 populations per continent (Fig 1C)
+	- Def 5: 1 population per continent (Fig 1D)
+
+###ESTIMATES###
+Attempt to recover true (=simulated) parameters with different strategies described in Fig 2
+	- "noStruct" = No Structure
+	- "fis" = Implicit Structure
+	- "pool" = Explicit Structure
+	- "onepop" = Temporal Structure
+
+Likelihoods of the different tested strategies are shown in Lhood_xxx.txt in each model folder
+Parameters estimated for the different tested strategies are shown in Param_xxx.txt in each model folder
+
+##SGDP##
+Fastsimcoal input files for the 4 scenarios tested on the SGDP data
