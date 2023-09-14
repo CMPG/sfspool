@@ -1,39 +1,75 @@
-Code and Files for the article "Demogenomic inference from spatially and temporally heterogeneous samples", Marchi, Kapopoulou, and Excoffier
+Files for the article "Demogenomic inference from spatially and temporally heterogeneous samples", Marchi, Kapopoulou, and Excoffier
+
 
 ##CODES##
-The zipped directories linux.zip and win.zip contain the fastsimcoal linux and windows versions used for the analyses
+The zipped directories linux.zip and win.zip contain the fastsimcoal2 linux and windows versions used for the analyses
+
+
 
 ##SIMULATION##
-Simulated data for models with spatial or temporal heterogeneities and attempts to recover these true scenarios with fastsimcoal
+Simulated data for models with spatial or temporal heterogeneities and attempts to recover the parameters of these true scenarios with fastsimcoal2
+3 type of heterogeneity have been tested:
+	1) "Spatial2pop" = Spatial heterogeneity with 2 populations per continent (Fig 1A)
+	2) "10PopDivPool" = Spatial heterogeneity with 5 populations per continent (Fig 1B)
+	3) "Temporal" = Temporal Heterogeneity (Fig 1C-D)
 
-###SIMULATED DATA###
-10 replicated sfs have been simulated under conditions described in Table 1 (named def by fastsimcoal) for 3 models: 
 
-1) "Spatial2pop" = Spatial heterogeneity with 2 populations per continent (Fig 1A) 
-	- Def 1: Strong heterogeneity; No admixture
-	- Def 2: Weak heterogeneity; No admixture
-	- Def 3: No heterogeneity; No admixture
-	- Def 4: Medium heterogeneity; Large admixture
-	- Def 5: Medium heterogeneity; Small admixture
-	- Def 6: Medium heterogeneity; No admixture
+	###SIMULATED DATA###
+	Genetic data have been simulation for the different conditions (named def by fastsimcoal2) described in Table 1:
 
-2) "10PopDivPool" = Spatial heterogeneity with 5 populations per continent (Fig 1B)
-	- Def 3: no admixture for n=2 
-	- Def 6: no admixture for n=10 
+	1) "Spatial2pop" = Spatial heterogeneity with 2 populations per continent (Fig 1A) 
+		- Def 1: Strong heterogeneity; No admixture
+		- Def 2: Weak heterogeneity; No admixture
+		- Def 3: No heterogeneity; No admixture
+		- Def 4: Medium heterogeneity; Large admixture
+		- Def 5: Medium heterogeneity; Small admixture
+		- Def 6: Medium heterogeneity; No admixture
 
-3) "Temporal" = Temporal Heterogeneity
-	- Def 1: 2 populations per continent (Fig 1C)
-	- Def 5: 1 population per continent (Fig 1D)
+	2) "10PopDivPool" = Spatial heterogeneity with 5 populations per continent (Fig 1B)
+		- Def 3: no admixture for n=2 
+		- Def 6: no admixture for n=10 
 
-###ESTIMATES###
-Attempt to recover true (=simulated) parameters with different strategies described in Fig 2
-	- "noStruct" = No Structure
-	- "fis" = Implicit Structure
-	- "pool" = Explicit Structure
-	- "onepop" = Temporal Structure
+	3) "Temporal" = Temporal Heterogeneity
+		- Def 1: 2 populations per continent (Fig 1C)
+		- Def 5: 1 population per continent (Fig 1D)
 
-Likelihoods of the different tested strategies are shown in Lhood_xxx.txt in each model folder
-Parameters estimated for the different tested strategies are shown in Param_xxx.txt in each model folder
+	10 replicated sfs have been simulated for each condition using the following command line: 
+	./fsc -t xxx.tpl -f xxx.def -n10 -I -s0 -d -q -x -j -k1000000
+		where xxx is an arbitrary generic name for the model; the conditions are given with the -f parameter; 
+		the other parameters are described in fastsimcoal2 manual (http://cmpg.unibe.ch/software/fastsimcoal2/man/fastsimcoal27.pdf)
+
+
+	###ESTIMATES###
+	Attempt to recover true (=simulated) parameters with different strategies described in Fig 2:
+		- "noStruct" = No Structure
+		- "fis" = Implicit Structure
+		- "pool" = Explicit Structure
+		- "onepop" = Temporal Structure
+
+	Parameter estimation was done with the following command line:
+	./fsc -t xxx_i.tpl -e xxx_i.est -n500000 -M -c1 -B1 -d -L40 -q --logprecision 18 
+		where xxx is a different generic name for each combination of simulation model and estimation strategy; i iterates 	over the 10 data sets.
+
+	Likelihoods of the different tested strategies are shown in Lhood_xxx.txt in each model folder
+	Parameters estimated for the different tested strategies are shown in Param_xxx.txt in each model folder
+
+
+###############################
 
 ##SGDP##
-Fastsimcoal input files for the 4 scenarios tested on the SGDP data
+Fastsimcoal input files for the 4 models tested on the SGDP data.
+
+	###ESTIMATES###
+	For each model, we estimated parameters with the following command line:
+		./fsc -t xxx.tpl -e xxx.est -n200000 -L30 -q  -C1 -M -d --multiSFS --logprecision 18 -c1 -B1
+			where xxx stands for the specific model to be studied.
+	
+	###CONFIDENCE INTERVALS###
+	Confidence intervals for the parameters estimated under the best models were obtained using a parametric bootstrap approach.
+	We first generated 100 SFS using the maximum-likelihood estimated parameter values:
+		./fsc -i xxx_boot.par -n100 -j -d -s0 -x –I -q -u
+		
+
+	We then re-estimated the parameters of the model using 20 independent runs and starting around the estimated ML parameter values:
+		./fsc -t xxx_boot.tpl -e xxx_boot.est –initvalues xxx_boot.pv -M -L30  -n500000 -d --multiSFS -C5 --logprecision 18 -q
+
