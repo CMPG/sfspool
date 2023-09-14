@@ -1,0 +1,91 @@
+//Number of population samples (demes)
+11
+//Population effective sizes (number of genes)
+43544
+11117
+28818
+23802
+10304
+2000
+2000
+66336
+48354
+67340
+30746
+//Sample sizes, ages and inbreeding
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+0 0 0
+16 0 1.519881915472641e-01
+16 0 1.428802896746138e-01
+16 0 1.371220710865831e-01
+0 0 0
+//Growth rates : negative growth implies population expansion
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+//Number of migration matrices : 0 implies no migration between demes
+2
+//migration matrix
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+//migration matrix
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 5.480103738293288e-07 0 0 0 0 0 0
+0 0 0 5.736322336177440e-07 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0
+//historical event: time, source, sink, migrants, new size, growth rate, migr. matrix
+19 historical event
+1111 7 2 1 28818 0 0 absoluteResize
+1111 2 10 6.836162169354816e-02 1 0 0 
+705 8 3 1 23802 0 0 absoluteResize
+775 9 4 1 10304 0 0 absoluteResize
+775 0 0 0 1 0 1 nomig
+205 2 3 5.862527949551675e-02 1 0 1 
+1313 2 2 0 60214 0 0 absoluteResize keep
+1010 4 5 0.002 1 0 1 
+1508 4 6 0.002 1 0 1 
+1934 3 1 1 1 0 0
+1934 4 1 1 1 0 0 
+1952 1 5 0.024 1 0 0 
+1958 1 1 0 2.074432327649566e-01 0 0 instbot
+1959 2 0 1 1 0 0 
+1959 1 0 1 1 0 0 
+24090 10 0 1 1 0 0 
+18665 0 0 0 5.178965685828289e-03 0 0 instbot
+17080 6 5 1 1 0 0 absoluteResize
+22655 5 0 1 1 0 0 
+//Number of independent loci [chromosome] 
+1410000 0
+//Per chromosome: Number of contiguous linkage Block: a block is a set of contiguous loci
+1
+//per Block:data type, number of loci, per gen recomb and mut rates
+DNA 100 0 6.13e-9 OUTEXP

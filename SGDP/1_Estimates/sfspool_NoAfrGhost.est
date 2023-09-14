@@ -1,0 +1,57 @@
+// Priors and rules file     
+// *********************     
+[PARAMETERS]     
+//             #isInt?              #name               #dist.             #min              #max     
+//all N are in number of haploid individuals     
+1 NAnc             unif    1000     100000    output
+1 NEura            unif    1000     100000    output  
+1 NaAF             unif    1000     100000    output  
+1 NbAF             unif    1000     100000    output 
+
+0 Nm_EUtoAS        logunif 0.0001   1         output 
+0 Nm_AStoEU        logunif 0.0001   1         output 
+
+0 iBotMH           logunif 0.001    1         output 
+0 iBotOOA          logunif 0.001    1         output
+
+1 TBotOOA          unif    860      22654     hide   bounded                   #After the LGM, before the divergence with Archaics 
+     
+1 TBotMH           unif    TBotOOA  22654     output paramInRange              #After the OOA, before the divergence with Archaics 
+1 TDivEura         unif    860      TBotOOA   output paramInRange              #After the LGM, before the OOA 
+1 TAdmEura_Nean    unif    TDivEura TBotOOA   output paramInRange              #Eurasian branch 
+1 TAdmAS_Nean      unif    860      TDivEura  output paramInRange              #Asian branch 
+1 TAdmAS_Deni      unif    860      TDivEura  output paramInRange              #Asian branch 
+
+//African specific parameters
+1 NpopAF           unif    100      2000      output  
+1 TpopAF           unif    50       TBotOOA   output paramInRange              #Before the OOA bottleneck 
+0 Nmp_AF           unif    0        100       output 
+1 NcAF             unif    10000    100000    output
+
+1 TResizeAF        unif    TpopAF   TBotOOA   output paramInRange              #After the formation of the continent, before the OOA 
+
+//European specific parameters
+1 NaEU             unif    1000     50000     output 
+1 NpopEU           unif    100      2000      output 
+1 TpopEU           unif    50       859       output bounded                   #Before the LGM bottleneck 
+0 Nmp_EU           unif    0        100       output 
+1 NcEU             unif    10000    100000    output
+
+//Asian specific parameters
+1 NaAS             unif    1000     50000     output
+1 NpopAS           unif    100      2000      output 
+1 TpopAS           unif    50       859       output bounded                   #Before the LGM bottleneck 
+0 Nmp_AS           unif    0        100       output 
+1 NcAS             unif    10000    100000    output
+        
+0 admEUAF          unif    0        0.1       output 
+
+     
+[COMPLEX PARAMETERS]     
+1 TOOA = TBotOOA+1                            output  
+1 TGFEura = TpopEU %max% TpopAS               hide  
+0 mAStoEU = Nm_AStoEU/NaAS                    hide  
+0 mEUtoAS = Nm_EUtoAS/NaEU                    hide  
+0 mpAF = Nmp_AF/NpopAF                        hide  
+0 mpAS = Nmp_AS/NpopAS                        hide  
+0 mpEU = Nmp_EU/NpopEU                        hide 
