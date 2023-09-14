@@ -1,0 +1,18 @@
+// Priors and rules file
+// *********************
+
+[PARAMETERS]
+//#isInt? #name   #dist.#min  #max 
+//all Ns are in number of haploid individuals
+1  AGE      unif     10       10       bounded hide
+1  NancPOP  unif     100      100000   output 
+1  NCONT1   unif     1000     100000   output
+1  NCONT2   unif     1000     100000   output
+1  NPOP     unif     100      100      hide bounded
+1  TDIVpop  logunif  AGE      1000     paramInRange output 
+1  TDIVCONT unif     TDIVpop  10000    output paramInRange
+1  TADM     unif     TDIVpop  TDIVCONT output paramInRange
+0  admPROP  logunif  0.0001   0.5      output
+
+
+[COMPLEX PARAMETERS]
